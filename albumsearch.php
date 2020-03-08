@@ -2,7 +2,7 @@
 
 session_start();
 
-$user_id = $_SESSION['username'];
+$user_id = $_SESSION['user_id'];
 $searchfield = $_POST['searchdata'];
 
 $apikey = '6d0c7c2eba2c06b0253e876a6e8e47ea';
@@ -27,6 +27,10 @@ $album_img = $album_0["image"];
 $artwork = $album_img["3"];
 $albumcover = $artwork["#text"];
 
+$_SESSION['album_title'] = $album_title;
+$_SESSION['album_artist'] = $album_artist;
+$_SESSION['album_artwork'] = $albumcover;
+
 //echo $album_0["name"];
 //echo $album_0["artist"];
 //echo "<img src='$albumcover' alt='photo of me' />";
@@ -44,7 +48,7 @@ $albumcover = $artwork["#text"];
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Hello, world! <?php echo $user_id?></h1>
 
     <div class="card" style="width: 18rem;">
   <img src="<?php echo $albumcover; ?>" class="card-img-top" alt="Album doesn't exist">
@@ -58,7 +62,7 @@ $albumcover = $artwork["#text"];
     <li class="list-group-item">Vestibulum at eros</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
+    <a href="review.php" class="card-link">Review</a>
     <a href="#" class="card-link">Another link</a>
   </div>
 </div>

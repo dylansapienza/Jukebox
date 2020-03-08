@@ -18,7 +18,7 @@
     $result = mysqli_query($dbc,$query);
 
     if($result){
-        $home_url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . '/index.php';
+        $home_url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . '/login.php';
         header('Location: ' . $home_url);
 	}
 	else{
