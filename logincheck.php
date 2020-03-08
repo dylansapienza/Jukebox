@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+
     require_once('connectvars.php');
 
     $error_msg = "";
@@ -24,7 +27,7 @@
         header('Location: ' . $home_url);
       }
       else {
-        // The username/password are incorrect so set an error message
+        // The username/password are incorrect so set an error messages
         echo 'Sorry, you must enter a valid username and password to log in.';
       }
 

@@ -1,7 +1,7 @@
 <?php
-$apikey = '';
+$apikey = '6d0c7c2eba2c06b0253e876a6e8e47ea';
 
-$albumtitle = 'Abbey Road';
+$albumtitle = 'Tired Boy';
 
 $artist = '';
 
@@ -15,5 +15,11 @@ $results = $arr["results"];
 $albummatches = $results["albummatches"];
 $album = $albummatches["album"];
 $album_0 = $album["0"];
+$album_img = $album_0["image"];
+$artwork = $album_img["3"];
+$albumcover = $artwork["#text"];
+echo $album_0["name"];
 echo $album_0["artist"];
+echo "<img src='$albumcover' alt='photo of me' />";
+
 ?>

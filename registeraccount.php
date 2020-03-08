@@ -13,6 +13,10 @@
 
     $result = mysqli_query($dbc,$query);
 
+    $query = "INSERT INTO jprofile (user_id, displayname) VALUES ('$user_id', '$name')";
+
+    $result = mysqli_query($dbc,$query);
+
     if($result){
         $home_url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . '/index.php';
         header('Location: ' . $home_url);
