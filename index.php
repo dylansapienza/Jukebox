@@ -49,9 +49,10 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><?php echo $user_id ?></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" method = "post" action="albumsearch.php">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchdata">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <a class="btn btn-outline-danger" href="logout.php" role="button">Logout</a>
     </form>
   </div>
 </nav>
