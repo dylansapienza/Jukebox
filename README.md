@@ -10,3 +10,4 @@ A Social Media Service for Music
 - [ ] Allow users to upload profile pictures
 - [ ] On edit profile page bring in current information
 - [ ] General User interface enhancements
+- [ ] Make Review Text Box Large

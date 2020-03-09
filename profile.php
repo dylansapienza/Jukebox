@@ -93,26 +93,32 @@ echo $user_id;
   <ul class="list-group list-group-flush">
   <a class="btn btn-primary" href="editprofile.php" role="button">Edit Profile</a>
   </ul>
+  <?php
+    $query = "SELECT * from jreview join jalbum on jreview.album_id = jalbum.album_id where user_id = '$user_id'";
+    $data = mysqli_query($dbc,$query);
+  ?>
 </div>
 		</div>
 		<div class="col-md-10">
-    <div class="card">
-				<h5 class="card-header">
-					Card title
-				</h5>
-				<div class="card-body">
-					<p class="card-text">
-						Card content
-					</p>
-				</div>
-				<div class="card-footer">
-					Card footer
-				</div>
-			</div>
-		</div>
-		</div>
-	</div>
-</div>
+
+<?php while($review = mysqli_fetch_assoc($data)){
+   echo"
+   <div class=\"card\" style=\"width: 18rem;\">
+  <img src=\"{$review['artwork_link']}\" class=\"card-img-top\" alt=\"Album doesn't exist\">
+  <div class=\"card-body\">
+    <h5 class=\"card-title\"> {$review['title']}</h5>
+    <p class=\"card-text\">{$review['artist']}</p>
+  </div>
+  <ul class=\"list-group list-group-flush\">
+    <li class=\"list-group-item\">{$review['review']}</li>
+  </ul>
+  <ul class=\"list-group list-group-flush\">
+    <li class=\"list-group-item\">Score: {$review['score']}</li>
+</div>";
+  }
+  ?>
+  </div>
+  </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

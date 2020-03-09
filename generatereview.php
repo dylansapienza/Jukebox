@@ -35,7 +35,7 @@ $query = "INSERT INTO jreview(album_id, user_id, score, review) VALUES ('$albumi
 $data = mysqli_query($dbc,$query);
 
 if($data){
-    $home_url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . '/index.php';
+    $home_url = 'http://' . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . '/profile.php';
     header('Location: ' . $home_url);
 }
 else{

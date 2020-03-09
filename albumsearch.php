@@ -56,11 +56,6 @@ $_SESSION['album_artwork'] = $albumcover;
     <h5 class="card-title"><?php echo $album_title; ?></h5>
     <p class="card-text"><?php echo $album_artist; ?></p>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
   <div class="card-body">
     <a href="review.php" class="card-link">Review</a>
     <a href="#" class="card-link">Another link</a>
