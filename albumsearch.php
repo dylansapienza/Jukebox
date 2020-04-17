@@ -48,10 +48,10 @@ $_SESSION['album_artwork'] = $albumcover;
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world! <?php echo $user_id?></h1>
+    <h1>Search Result</h1>
 
     <div class="card" style="width: 18rem;">
-  <img src="<?php echo $albumcover; ?>" class="card-img-top" alt="Album doesn't exist">
+  <img src="<?php echo $albumcover; ?>" class="card-img-top" alt="No album found">
   <div class="card-body">
     <h5 class="card-title"><?php echo $album_title; ?></h5>
     <p class="card-text"><?php echo $album_artist; ?></p>
@@ -61,6 +61,8 @@ $_SESSION['album_artwork'] = $albumcover;
     <a href="#" class="card-link">Another link</a>
   </div>
 </div>
+<br>
+<i> Wrong album? Try searching with the album title and artist name! </i>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

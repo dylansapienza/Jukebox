@@ -1,11 +1,10 @@
-<?php 
-    session_start();
+<?php
 
-    require_once('connectvars.php');
-  
-    $user_id = $_SESSION['user_id'];
-  
+  session_start();
 
+  require_once('connectvars.php');
+
+  $user_id = $_SESSION['user_id'];
 
 ?>
 
@@ -19,6 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,10 +29,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="profile.php">Profile</a>
+        <a class="nav-link" href="#">Profile</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,19 +46,73 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="people.php">Find People</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><?php echo $user_id ?></a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" method = "post" action="albumsearch.php">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchdata">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      <a class="btn btn-outline-danger" href="logout.php" role="button">Logout</a>
     </form>
   </div>
 </nav>
+</break>
+<?php 
+
+  $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+    $query = "SELECT * FROM jprofile WHERE user_id = '$user_id'";
+
+    $data = mysqli_query($dbc,$query);
+    $userdata = mysqli_fetch_assoc($data)   
+
+?>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="profile_picture">
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $userdata['displayname'] ?></h5>
+    <p class="card-text"><?php echo $userdata['bio'] ?></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><?php echo $userdata['genres'] ?></li>
+    <li class="list-group-item">Occupation</li>
+    <li class="list-group-item">Location</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Social Media</a>
+    <a href="#" class="card-link">External Source</a>
+  </div>
+  <ul class="list-group list-group-flush">
+  <a class="btn btn-primary" href="editprofile.php" role="button">Edit Profile</a>
+  </ul>
+  <?php
+    $query = "SELECT * from jreview join jalbum on jreview.album_id = jalbum.album_id where user_id = '$user_id'";
+    $data = mysqli_query($dbc,$query);
+  ?>
+</div>
+		</div>
+		<div class="col-md-10">
+
+<?php while($review = mysqli_fetch_assoc($data)){
+   echo"
+   <div class=\"card\" style=\"width: 18rem;\">
+  <img src=\"{$review['artwork_link']}\" class=\"card-img-top\" alt=\"Album doesn't exist\">
+  <div class=\"card-body\">
+    <h5 class=\"card-title\"> {$review['title']}</h5>
+    <p class=\"card-text\">{$review['artist']}</p>
+  </div>
+  <ul class=\"list-group list-group-flush\">
+    <li class=\"list-group-item\">{$review['review']}</li>
+  </ul>
+  <ul class=\"list-group list-group-flush\">
+    <li class=\"list-group-item\">Score: {$review['score']}</li>
+</div>";
+  }
+  ?>
+  </div>
+  </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
